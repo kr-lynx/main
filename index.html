@@ -24,15 +24,6 @@
     a{color:inherit;text-decoration:none}
     .container{max-width:1200px;margin:0 auto;padding:0 40px}
 
-    /* ── NAV ── */
-    nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 40px;height:60px;display:flex;justify-content:space-between;align-items:center;background:rgba(13,13,13,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
-    .nav-logo{font-size:14px;font-weight:700;letter-spacing:.04em}
-    .nav-logo span{color:var(--accent)}
-    .nav-links{display:flex;gap:32px;list-style:none}
-    .nav-links a{font-size:12px;color:var(--fg-muted);letter-spacing:.08em;text-transform:uppercase;transition:color .2s}
-    .nav-links a:hover{color:var(--accent)}
-    .btn-nav{font-family:var(--font);font-size:12px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;padding:8px 20px;border:1px solid var(--border);background:transparent;color:var(--fg-muted);cursor:pointer;transition:all .2s}
-    .btn-nav:hover{border-color:var(--accent);color:var(--accent)}
 
     /* ── BUTTONS ── */
     .btn{font-family:var(--font);font-size:13px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;padding:13px 28px;border:1px solid var(--border);background:transparent;color:var(--fg);cursor:pointer;transition:all .2s;display:inline-block}
@@ -41,7 +32,7 @@
     .btn-accent:hover{background:transparent;color:var(--accent)}
 
     /* ── MAIN 3-COLUMN SECTION ── */
-    #main{padding:0;padding-top:60px;border-bottom:1px solid var(--border)}
+    #main{padding:0;border-bottom:1px solid var(--border)}
     .main-grid{display:grid;grid-template-columns:1fr 1fr 1fr;min-height:600px}
 
     /* column shared */
@@ -148,16 +139,6 @@
   </style>
 </head>
 <body>
-
-<!-- NAV -->
-<nav>
-  <div class="nav-logo">kr<span>-</span>lynx</div>
-  <ul class="nav-links">
-    <li><a href="#main">Info</a></li>
-    <li><a href="#gallery">Projects</a></li>
-  </ul>
-  <button class="btn-nav" id="navContact">Contact &rarr;</button>
-</nav>
 
 <!-- MAIN: 3 COLUMNS -->
 <section id="main">
@@ -414,9 +395,7 @@ function closeContactModal() { contactModal.classList.remove('open'); document.b
 document.getElementById('contactClose').addEventListener('click', closeContactModal);
 contactModal.addEventListener('click', e => { if (e.target === contactModal) closeContactModal(); });
 
-['navContact','colContact'].forEach(id => {
-  document.getElementById(id).addEventListener('click', openContactModal);
-});
+document.getElementById('colContact').addEventListener('click', openContactModal);
 
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') { closeModal(); closeContactModal(); }
