@@ -34,14 +34,6 @@
     .btn-nav{font-family:var(--font);font-size:12px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;padding:8px 20px;border:1px solid var(--border);background:transparent;color:var(--fg-muted);cursor:pointer;transition:all .2s}
     .btn-nav:hover{border-color:var(--accent);color:var(--accent)}
 
-    /* ── HERO ── */
-    #hero{padding:160px 0 80px;border-bottom:1px solid var(--border)}
-    .hero-label{font-size:12px;color:var(--accent);letter-spacing:.14em;text-transform:uppercase;margin-bottom:28px}
-    h1{font-size:clamp(36px,4.5vw,60px);font-weight:700;line-height:1.12;letter-spacing:-.02em;max-width:700px;margin-bottom:28px}
-    h1 em{font-style:normal;color:var(--accent)}
-    .hero-desc{font-size:15px;color:var(--fg-muted);max-width:500px;line-height:1.8;margin-bottom:44px}
-    .hero-cta{display:inline-flex;gap:16px;flex-wrap:wrap}
-
     /* ── BUTTONS ── */
     .btn{font-family:var(--font);font-size:13px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;padding:13px 28px;border:1px solid var(--border);background:transparent;color:var(--fg);cursor:pointer;transition:all .2s;display:inline-block}
     .btn:hover{border-color:var(--accent);color:var(--accent)}
@@ -49,12 +41,11 @@
     .btn-accent:hover{background:transparent;color:var(--accent)}
 
     /* ── MAIN 3-COLUMN SECTION ── */
-    #main{padding:0;border-bottom:1px solid var(--border)}
+    #main{padding:0;padding-top:60px;border-bottom:1px solid var(--border)}
     .main-grid{display:grid;grid-template-columns:1fr 1fr 1fr;min-height:600px}
 
     /* column shared */
-    .col{padding:48px 40px;border-right:1px solid var(--border)}
-    .col:last-child{border-right:none}
+    .col{padding:48px 40px}
     .col-label{font-size:12px;font-weight:500;color:var(--fg-muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:40px;padding-bottom:16px;border-bottom:1px solid var(--border)}
 
     /* INFO column */
@@ -75,7 +66,7 @@
     .stack-tag{font-size:11px;color:var(--fg-muted);border:1px solid var(--border);padding:3px 9px;letter-spacing:.03em}
 
     /* CONTACT column */
-    .contact-box{border:1px solid var(--accent);padding:0}
+    .contact-box{padding:0}
     .contact-rows{display:flex;flex-direction:column}
     .contact-row{display:flex;justify-content:space-between;align-items:center;padding:18px 24px;border-bottom:1px solid var(--border);color:var(--fg-muted);transition:color .2s;cursor:pointer}
     .contact-row:hover{color:var(--accent)}
@@ -88,9 +79,8 @@
 
     /* ── PROJECT GALLERY ── */
     #gallery{padding:0;border-bottom:1px solid var(--border)}
-    .gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--border)}
-    .gallery-card{background:var(--card);border-right:1px solid var(--border);cursor:pointer;transition:background .2s;position:relative;border-left:3px solid transparent}
-    .gallery-card:last-child{border-right:none}
+    .gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;padding:40px 40px 0}
+    .gallery-card{background:var(--card);cursor:pointer;transition:background .2s;position:relative;border-left:3px solid transparent}
     .gallery-card:hover{background:var(--card2);border-left-color:var(--accent)}
 
     /* placeholder area */
@@ -168,19 +158,6 @@
   </ul>
   <button class="btn-nav" id="navContact">Contact &rarr;</button>
 </nav>
-
-<!-- HERO -->
-<section id="hero">
-  <div class="container">
-    <div class="hero-label">Available for work</div>
-    <h1>Building tools that<br><em>actually work.</em></h1>
-    <p class="hero-desc">Automations, AI integrations, vibe-coded products and web projects — I turn ideas into working systems.</p>
-    <div class="hero-cta">
-      <a href="#gallery" class="btn btn-accent">View projects</a>
-      <button class="btn" id="heroContact">Get in touch</button>
-    </div>
-  </div>
-</section>
 
 <!-- MAIN: 3 COLUMNS -->
 <section id="main">
@@ -268,7 +245,7 @@
             <span class="contact-row-label">Email</span>
             <span class="contact-row-val">kirillromashov202@gmail.com</span>
           </a>
-          <a class="contact-row" href="https://t.me/goldlynx" target="_blank" rel="noopener">
+          <a class="contact-row" href="https://t.me/GoldLynx" target="_blank" rel="noopener">
             <span class="contact-row-label">Telegram</span>
             <span class="contact-row-val">@goldlynx</span>
           </a>
@@ -437,7 +414,7 @@ function closeContactModal() { contactModal.classList.remove('open'); document.b
 document.getElementById('contactClose').addEventListener('click', closeContactModal);
 contactModal.addEventListener('click', e => { if (e.target === contactModal) closeContactModal(); });
 
-['navContact','heroContact','colContact'].forEach(id => {
+['navContact','colContact'].forEach(id => {
   document.getElementById(id).addEventListener('click', openContactModal);
 });
 
