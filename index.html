@@ -601,17 +601,20 @@ document.querySelectorAll('.nav-link').forEach(link => {
   });
 });
 
-// Nav active section tracking
-const sectionIO = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-      const link = document.querySelector(`.nav-link[data-section="${e.target.id}"]`);
-      if (link) link.classList.add('active');
-    }
+// Nav active section tracking via scroll position
+function updateActiveNav() {
+  const navH = 72;
+  const sections = document.querySelectorAll('section[id]');
+  let current = sections[0]?.id || '';
+  sections.forEach(section => {
+    if (window.scrollY >= section.offsetTop - navH - 40) current = section.id;
   });
-}, { threshold: 0.3, rootMargin: '-60px 0px -40% 0px' });
-document.querySelectorAll('section[id]').forEach(s => sectionIO.observe(s));
+  document.querySelectorAll('.nav-link').forEach(link => {
+    link.classList.toggle('active', link.dataset.section === current);
+  });
+}
+window.addEventListener('scroll', updateActiveNav, { passive: true });
+updateActiveNav();
 
 // Project modal
 const modal = document.getElementById('modal');
