@@ -319,7 +319,7 @@
       background: #fff;
       border: 1px solid var(--border);
       border-radius: 16px;
-      max-width: 560px;
+      max-width: 640px;
       width: 100%;
       max-height: 82vh;
       overflow-y: auto;
@@ -353,6 +353,9 @@
       letter-spacing: -0.02em; margin-bottom: 16px;
     }
     .modal-desc { font-size: 15px; color: #555; line-height: 1.8; margin-bottom: 24px; }
+    .modal-desc p { margin-bottom: 14px; }
+    .modal-desc p:last-child { margin-bottom: 0; }
+    .modal-desc strong { color: #333; font-weight: 600; }
     .modal-tags { display: flex; flex-wrap: wrap; gap: 8px; }
 
     /* === SCROLL REVEAL === */
@@ -440,9 +443,9 @@
   <h2 class="reveal">Projects</h2>
   <div class="projects-grid">
     <div class="project-card reveal" data-id="0">
-      <p class="project-cat">Automation</p>
-      <h3>Haos General Inbox</h3>
-      <p>Telegram bot that routes messages, logs conversations to HubSpot CRM and triggers n8n workflows automatically.</p>
+      <p class="project-cat">Automation &middot; Communication</p>
+      <h3>General Inbox</h3>
+      <p>Centralizes all incoming client communications in Telegram. Messages auto-route to threads, sync to HubSpot CRM, and the whole team works from one interface.</p>
       <div class="project-tags">
         <span class="project-tag">Python</span>
         <span class="project-tag">Telethon</span>
@@ -451,20 +454,20 @@
       </div>
     </div>
     <div class="project-card reveal" data-id="1">
-      <p class="project-cat">AI &middot; Automation</p>
+      <p class="project-cat">AI &middot; Automation &middot; Content Ops</p>
       <h3>Content Factory</h3>
-      <p>7-workflow n8n system that parses RSS, writes articles, generates images and publishes to Telegram — fully automated.</p>
+      <p>AI content platform built on 7 n8n workflows. Covers the full production cycle from research and copywriting to image generation, review, and delivery.</p>
       <div class="project-tags">
         <span class="project-tag">n8n</span>
-        <span class="project-tag">Claude API</span>
-        <span class="project-tag">RSS</span>
-        <span class="project-tag">Telegram</span>
+        <span class="project-tag">Gemini 2.5</span>
+        <span class="project-tag">FLUX Pro</span>
+        <span class="project-tag">Supabase</span>
       </div>
     </div>
     <div class="project-card reveal" data-id="2">
       <p class="project-cat">Web dev</p>
       <h3>kr-lynx portfolio</h3>
-      <p>Personal portfolio site. No frameworks — pure HTML, CSS and vanilla JS. Riegla font, light editorial aesthetic, GitHub Pages.</p>
+      <p>Personal portfolio site built from scratch — pure HTML, CSS and vanilla JS. No frameworks, no dependencies. Light editorial aesthetic, hosted on GitHub Pages.</p>
       <div class="project-tags">
         <span class="project-tag">HTML</span>
         <span class="project-tag">CSS</span>
@@ -475,11 +478,12 @@
     <div class="project-card reveal" data-id="3">
       <p class="project-cat">Automation &middot; Finance</p>
       <h3>Finance Automatization</h3>
-      <p>Personal finance tracking with automated data collection, categorization and Telegram reporting via n8n.</p>
+      <p>Automates the full invoice and payment lifecycle for a service business — from invoice generation to reminder escalation and client trust scoring.</p>
       <div class="project-tags">
         <span class="project-tag">n8n</span>
-        <span class="project-tag">Google Sheets</span>
-        <span class="project-tag">Telegram</span>
+        <span class="project-tag">Airtable</span>
+        <span class="project-tag">Minimax API</span>
+        <span class="project-tag">Brevo</span>
       </div>
     </div>
   </div>
@@ -540,25 +544,33 @@
     <button class="modal-close" id="modalClose" aria-label="Close">&#x2715;</button>
     <p class="modal-cat" id="modalCat"></p>
     <h2 id="modalTitle"></h2>
-    <p class="modal-desc" id="modalDesc"></p>
+    <div class="modal-desc" id="modalDesc"></div>
     <div class="modal-tags" id="modalTags"></div>
   </div>
 </div>
 
 <script>
 const projects = [
-  { cat:'Automation', title:'Haos General Inbox',
-    desc:'A Telegram bot system that listens to incoming messages, routes them by category, logs full conversation history to HubSpot CRM as Notes, and triggers n8n workflows for automated responses. Built with Telethon, running as a persistent systemd service.',
-    stack:['Python','Telethon','n8n','HubSpot API','Linux'] },
-  { cat:'AI · Automation', title:'Content Factory',
-    desc:'7-workflow n8n pipeline for a tech-science Telegram channel. Parses RSS feeds, selects stories, generates long-read articles via Claude API, creates matching images, and publishes on schedule — fully autonomous.',
-    stack:['n8n','Claude API','RSS','Telegram Bot API','Image gen'] },
+  { cat:'Automation · Communication', title:'General Inbox',
+    desc:`<p>Client communications arrive through multiple channels — Telegram, live chat, email. Employees constantly switch between apps to track conversations, miss context, and spend time on coordination instead of actual work.</p>
+<p>This system aggregates all incoming communications into a single Telegram workspace, organized by threads. A Python service listens to messages via the Telegram API and forwards them to an n8n workflow, which identifies the contact, routes the conversation to the right thread, and logs it to HubSpot. Team replies are captured the same way — outbound messages appear on the client's CRM record automatically. Incoming live chat from HubSpot is mirrored into Telegram in real time.</p>
+<p><strong>Result:</strong> employees work in one app instead of switching between Telegram, email, and live chat. Every client conversation is automatically logged. Full message history is visible on the contact record without any manual data entry.</p>`,
+    stack:['Python','Telethon','n8n','HubSpot API'] },
+  { cat:'AI · Automation · Content Ops', title:'Content Factory',
+    desc:`<p>The content team spent significant time on repetitive production tasks: researching topics, gathering context, writing drafts, generating images, revising assets, and moving tasks across production stages. The bottleneck wasn't content creation itself — it was the operational overhead around it.</p>
+<p>An internal AI content platform built on <strong>7 n8n workflows</strong> that automated the full content lifecycle: Research → Copywriting → Image Generation → Review → Iterations → Delivery. Content requests were created and tracked in a project management system. AI agents processed tasks, generated assets, returned results back to the workflow, and continued iteration loops until approved. Editors only validated and approved final outputs.</p>
+<p><strong>Result:</strong> reduced manual content operations, lower production costs, faster content delivery, standardized quality control. Team shifted from execution to review and strategic work.</p>`,
+    stack:['n8n','Gemini 2.5 Pro','FLUX Pro','Supabase','Airtable','ScrapingBee'] },
   { cat:'Web dev', title:'kr-lynx portfolio',
-    desc:'Personal portfolio site. No frameworks, no templates — pure HTML, CSS and vanilla JS. Light editorial aesthetic, Riegla font, hosted on GitHub Pages.',
+    desc:`<p>A personal portfolio site built from scratch without frameworks. The goal was a clean, fast, professional page that works as a visual resume — something to send to HR and potential clients instead of a PDF.</p>
+<p>Minimal design: warm off-white background, a single accent color, one typeface. The layout follows a full-viewport hero, an about section with a stack overview, a project grid with modal popups, and a contact block. All interactions — smooth scroll, scroll-reveal animations, active nav tracking, modal open/close — are written in plain JavaScript with no dependencies.</p>
+<p>Deployed on GitHub Pages. Updates on every push to main.</p>`,
     stack:['HTML5','CSS3','Vanilla JS','GitHub Pages'] },
   { cat:'Automation · Finance', title:'Finance Automatization',
-    desc:'Personal finance system that collects spending data from multiple sources, categorizes transactions automatically, and delivers structured weekly reports via Telegram. Implemented with n8n workflows.',
-    stack:['n8n','Google Sheets','Telegram','Excalidraw'] }
+    desc:`<p>Managing billing for a service business with multiple clients meant daily manual work: checking which payments arrived, validating them against contracts, following up on overdue invoices. On top of that, every billing cycle added 4–6 hours of pure mechanics — generating invoices, pulling exchange rates, sending emails, updating records, deciding who gets extended credit next month.</p>
+<p>A set of n8n workflows covering the full billing lifecycle: <strong>payment-triggered invoicing</strong> — when a payment arrives, the system fetches exchange rates, loads contract data, generates an invoice via the accounting API, and emails the PDF automatically. <strong>Month-end runs</strong> issue final invoices for recurring clients and close out advance payments. <strong>Reminder escalation</strong> sends follow-ups at 3, 5, 15, and 30 days overdue. <strong>Trust scoring</strong> updates each client's billing terms based on payment history every cycle.</p>
+<p><strong>Result:</strong> the billing cycle runs end-to-end without manual input. Daily payment validation happens in the background. The only human touchpoint is exception handling.</p>`,
+    stack:['n8n','Airtable','Minimax API','Brevo','JavaScript'] }
 ];
 
 // Scroll reveal
@@ -590,7 +602,7 @@ function openModal(id) {
   const p = projects[id];
   document.getElementById('modalCat').textContent = p.cat;
   document.getElementById('modalTitle').textContent = p.title;
-  document.getElementById('modalDesc').textContent = p.desc;
+  document.getElementById('modalDesc').innerHTML = p.desc;
   document.getElementById('modalTags').innerHTML = p.stack.map(s =>
     `<span class="project-tag">${s}</span>`).join('');
   modal.classList.add('open');
