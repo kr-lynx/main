@@ -114,12 +114,26 @@
       position: relative;
     }
     .hero-content { max-width: 1100px; }
-    .hero-floats { display: flex; gap: 16px; margin-bottom: 24px; }
-    .float-icon {
-      font-size: 36px;
+    .hero-floats { display: flex; gap: 20px; margin-bottom: 32px; align-items: center; }
+    .float-shape {
       display: inline-block;
       animation: floatAnim 3s ease-in-out infinite;
       animation-delay: var(--delay, 0s);
+    }
+    .shape-diamond {
+      width: 40px; height: 40px;
+      background: var(--accent);
+      clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    }
+    .shape-blob {
+      width: 46px; height: 46px;
+      background: #f4845f;
+      border-radius: 60% 40% 55% 45% / 45% 55% 40% 60%;
+    }
+    .shape-ring {
+      width: 40px; height: 40px;
+      border: 5px solid #e9c46a;
+      border-radius: 50%;
     }
     @keyframes floatAnim {
       0%, 100% { transform: translateY(0); }
@@ -132,7 +146,6 @@
       letter-spacing: -0.03em;
       margin-bottom: 24px;
     }
-    .accent-star { color: var(--accent); }
     .hero-sub {
       font-weight: 700;
       font-size: clamp(28px, 4vw, 44px);
@@ -140,7 +153,7 @@
       letter-spacing: -0.02em;
       margin-bottom: 32px;
     }
-    .hero-location { font-weight: 400; font-size: 15px; color: var(--fg-muted); }
+    .hero-location { font-weight: 400; font-size: 17px; color: var(--fg-muted); }
     .hero-arrow {
       position: absolute;
       bottom: 40px;
@@ -274,9 +287,10 @@
     }
     .contact-row:first-child { border-top: 1px solid var(--border); }
     .contact-row:hover { color: var(--accent); }
-    .contact-icon { font-size: 20px; width: 28px; }
-    .contact-label { font-size: 13px; color: var(--fg-muted); width: 80px; }
-    .contact-value { font-weight: 500; font-size: 16px; }
+    .contact-icon { width: 24px; height: 24px; flex-shrink: 0; color: var(--fg-muted); }
+    .contact-icon svg { width: 20px; height: 20px; display: block; }
+    .contact-label { font-size: 18px; font-weight: 400; color: var(--fg-muted); width: 100px; }
+    .contact-value { font-weight: 400; font-size: 18px; color: var(--fg-muted); }
 
     /* === FOOTER === */
     footer {
@@ -366,7 +380,7 @@
     }
     @media (prefers-reduced-motion: reduce) {
       .reveal { opacity: 1; transform: none; transition: none; }
-      .float-icon { animation: none; }
+      .float-shape { animation: none; }
     }
   </style>
 </head>
@@ -375,7 +389,7 @@
 <!-- NAVBAR -->
 <nav id="navbar">
   <div class="nav-inner">
-    <a href="#about" class="nav-logo">lynx <span class="logo-star">✦</span></a>
+    <a href="#about" class="nav-logo">kr-lynx</a>
     <div class="nav-pill">
       <a href="#about" class="nav-link active" data-section="about">About</a>
       <a href="#projects" class="nav-link" data-section="projects">Projects</a>
@@ -389,13 +403,13 @@
   <div class="hero-viewport">
     <div class="hero-content">
       <div class="hero-floats">
-        <span class="float-icon" style="--delay:0s">🤖</span>
-        <span class="float-icon" style="--delay:0.5s">⚡</span>
-        <span class="float-icon" style="--delay:1s">📈</span>
+        <span class="float-shape shape-diamond" style="--delay:0s"></span>
+        <span class="float-shape shape-blob" style="--delay:0.6s"></span>
+        <span class="float-shape shape-ring" style="--delay:1.2s"></span>
       </div>
-      <h1 class="hero-title">Hey, I'm Kirill <span class="accent-star">✦</span></h1>
+      <h1 class="hero-title">Hey, I'm Kirill</h1>
       <p class="hero-sub">I'm an AI Growth Manager.<br>Helping businesses automate<br>processes and grow with AI.</p>
-      <p class="hero-location">📍 Based in Belgrade &middot; Moving to Uruguay &middot; Open for work worldwide</p>
+      <p class="hero-location">Based in Belgrade &middot; Moving to Uruguay &middot; Open for work worldwide</p>
     </div>
     <a href="#about-detail" class="hero-arrow" aria-label="Scroll down">↓</a>
   </div>
@@ -403,7 +417,7 @@
   <div class="about-detail reveal" id="about-detail">
     <div>
       <p class="section-label">About me</p>
-      <p class="about-text">AI Growth Product Manager with 5+ years in iGaming, Crypto, and FinTech. Shipped 0→1 AI products: VIP detection, personalized bonus engines, content pipelines — +65% revenue, +130% MAU, ×12 content output. GTM strategy across 40+ geos, B2B &amp; B2C.</p>
+      <p class="about-text">AI Growth Product Manager with 5+ years of experience in iGaming, Crypto, and FinTech. Built and shipped 0→1 AI products from VIP detection systems and personalized bonus engines to content pipelines. Build GTM strategy and AI automation (n8n, Claude, LLM workflows, RAG) in both B2B and B2C markets across 40+ geos.</p>
     </div>
     <div>
       <p class="section-label">Stack</p>
@@ -477,22 +491,38 @@
   <p class="contact-sub reveal">Open for freelance and full-time. Reply within 24h.</p>
   <div class="contact-rows reveal">
     <a class="contact-row" href="mailto:kirillromashov202@gmail.com">
-      <span class="contact-icon">📧</span>
+      <span class="contact-icon">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 4H4C2.9 4 2 4.9 2 6v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z" fill="currentColor"/>
+        </svg>
+      </span>
       <span class="contact-label">Email</span>
       <span class="contact-value">kirillromashov202@gmail.com</span>
     </a>
     <a class="contact-row" href="https://t.me/GoldLynx" target="_blank" rel="noopener">
-      <span class="contact-icon">✈️</span>
+      <span class="contact-icon">
+        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248-1.97 9.281c-.144.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.16 13.39l-2.97-.924c-.657-.213-.67-.657.136-.974l10.851-4.184c.547-.2 1.024.136.717.91-.033.008-.32-.033-.332.03z"/>
+        </svg>
+      </span>
       <span class="contact-label">Telegram</span>
       <span class="contact-value">@GoldLynx</span>
     </a>
     <a class="contact-row" href="https://github.com/kr-lynx" target="_blank" rel="noopener">
-      <span class="contact-icon">🐙</span>
+      <span class="contact-icon">
+        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+        </svg>
+      </span>
       <span class="contact-label">GitHub</span>
       <span class="contact-value">kr-lynx</span>
     </a>
     <a class="contact-row" href="https://docs.google.com/document/d/1GZOwFYLEXzHaOD_r4zs4UfWUPAjb1phEiOvyAv7grgQ/export?format=pdf" target="_blank" rel="noopener">
-      <span class="contact-icon">📄</span>
+      <span class="contact-icon">
+        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6zm2-5h8v1.5H8V15zm0-3h8v1.5H8V12zm0-3h5v1.5H8V9z"/>
+        </svg>
+      </span>
       <span class="contact-label">CV</span>
       <span class="contact-value">Download PDF →</span>
     </a>
