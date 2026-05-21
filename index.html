@@ -605,6 +605,14 @@ document.querySelectorAll('.nav-link').forEach(link => {
 function updateActiveNav() {
   const navH = 72;
   const sections = document.querySelectorAll('section[id]');
+  // If scrolled to the bottom, force-activate the last section
+  if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 4) {
+    const lastId = sections[sections.length - 1]?.id;
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.classList.toggle('active', link.dataset.section === lastId);
+    });
+    return;
+  }
   let current = sections[0]?.id || '';
   sections.forEach(section => {
     if (window.scrollY >= section.offsetTop - navH - 40) current = section.id;
