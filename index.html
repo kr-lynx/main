@@ -495,6 +495,28 @@
         <span class="project-tag">Brevo</span>
       </div>
     </div>
+    <div class="project-card reveal" data-id="4">
+      <p class="project-cat">AI &middot; Product &middot; iGaming</p>
+      <h3>VIP Detection System</h3>
+      <p>Automated system that identifies and classifies high-value players into VIP tiers based on behavioral and financial metrics — with a qualification window to filter out volatility.</p>
+      <div class="project-tags">
+        <span class="project-tag">Product Design</span>
+        <span class="project-tag">Rule Engine</span>
+        <span class="project-tag">iGaming</span>
+        <span class="project-tag">Unit Economics</span>
+      </div>
+    </div>
+    <div class="project-card reveal" data-id="5">
+      <p class="project-cat">AI &middot; Product &middot; iGaming</p>
+      <h3>Personalized Bonus Engine</h3>
+      <p>AI-powered system that scores each player across behavioral signals and selects the most relevant bonus offer — reducing budget waste and improving retention by segment.</p>
+      <div class="project-tags">
+        <span class="project-tag">Product Design</span>
+        <span class="project-tag">AI Scoring</span>
+        <span class="project-tag">iGaming</span>
+        <span class="project-tag">Segmentation</span>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -579,7 +601,17 @@ const projects = [
     desc:`<p>Managing billing for a service business with multiple clients meant daily manual work: checking which payments arrived, validating them against contracts, following up on overdue invoices. On top of that, every billing cycle added 4–6 hours of pure mechanics — generating invoices, pulling exchange rates, sending emails, updating records, deciding who gets extended credit next month.</p>
 <p>A set of n8n workflows covering the full billing lifecycle: <strong>payment-triggered invoicing</strong> — when a payment arrives, the system fetches exchange rates, loads contract data, generates an invoice via the accounting API, and emails the PDF automatically. <strong>Month-end runs</strong> issue final invoices for recurring clients and close out advance payments. <strong>Reminder escalation</strong> sends follow-ups at 3, 5, 15, and 30 days overdue. <strong>Trust scoring</strong> updates each client's billing terms based on payment history every cycle.</p>
 <p><strong>Result:</strong> the billing cycle runs end-to-end without manual input. Daily payment validation happens in the background. The only human touchpoint is exception handling.</p>`,
-    stack:['n8n','Airtable','Minimax API','Brevo','JavaScript'] }
+    stack:['n8n','Airtable','Minimax API','Brevo','JavaScript'] },
+  { cat:'AI · Product · iGaming', title:'VIP Detection System',
+    desc:`<p>In iGaming, player metrics are inherently volatile — GGR, ARPU, and deposit volumes fluctuate week to week. Manual VIP classification creates false positives, delays recognition of real high-value players, and doesn't scale across a growing user base.</p>
+<p>Designed and shipped an automated VIP detection system that evaluates players across a defined set of threshold metrics. Rather than assigning VIP status on a single data snapshot, the system identifies <strong>pre-VIP candidates</strong> — players whose numbers enter a qualifying range — and monitors them through a holding period. Only players who sustain the required metrics throughout that window receive a tier. After each period, the system recalculates and re-evaluates for the next tier in a continuous loop.</p>
+<p><strong>Role:</strong> full product ownership — architecture design, cross-team coordination (data, CRM, retention), parameter definition, trigger logic, unit economics, stakeholder sign-off.</p>`,
+    stack:['Product Design','Rule Engine','iGaming','Unit Economics'] },
+  { cat:'AI · Product · iGaming', title:'Personalized Bonus Engine',
+    desc:`<p>Offering the same bonuses to all players wastes budget and drives the wrong behavior. Bonus hunters exploit generous offers; churn-risk players receive nothing relevant; VIPs get the same mechanic as new registrations. Without behavioral targeting, retention spend has low ROI.</p>
+<p>Designed an AI-powered engine that collects per-player signals — deposit history, bet frequency, game type preferences, activity level, VIP status, country, payment method — and segments players into behavioral cohorts: recently returned, new depositors, bonus hunters, potential high-rollers, churn risk, and VIPs. An <strong>AI scoring layer</strong> evaluates each player's full profile and probability signals (likelihood of next deposit, churn probability, bonus uptake rate) and selects the most relevant offer from the existing bonus catalog. Recommendations are further informed by behavior patterns from similar players.</p>
+<p><strong>Role:</strong> full product ownership — concept, architecture, segmentation logic, AI scoring design, cross-team rollout, hypothesis validation, unit economics.</p>`,
+    stack:['Product Design','AI Scoring','Player Segmentation','iGaming'] }
 ];
 
 // Scroll reveal
